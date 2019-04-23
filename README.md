@@ -28,10 +28,10 @@ export PATH=$PATH:/usr/local/go/bin
 
 You can also fellow this [guide](https://golang.org/doc/install).
 
-Third, install vue-go-wasm
+Third, install vue-go-wasm-loader
 
 ```
-npm install vue-go-wasm
+npm install vue-go-wasm-loader
 ```
 
 # Settings
