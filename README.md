@@ -65,6 +65,8 @@ If your project is create from vue-cli, please edit `vue-loader.conf.js`.
 
 # Start
 
+
+## Simple example
 This is an minilize vue wasm example
 
 ```go
@@ -85,6 +87,63 @@ func main() {
     println("Hello World!")
 }
 </wasm>
+```
+
+## A more complex example
+
+This example show how to bind a golang func into a vue compoment, and make sure display the button after the wasm is loaded.
+
+```go
+<template>
+  <div v-if="WASMReady">
+    <input type="button" v-on:click="CustomFunc()" value="Press"/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'WASM',
+  mounted () {
+    this.$options.wasm.then(e => {
+      /* global ExportFunction */
+      ExportFunction.apply(this)
+      this.WASMReady = true
+    })
+  },
+  data () {
+    return {
+      WASMReady: false
+    }
+  }
+}
+</script>
+
+<wasm lang="go">
+package main
+
+import "syscall/js"
+
+func ExportFunction(this js.Value, args []js.Value) interface{} {
+    cb:=js.FuncOf(CustomFunc) // Your go func here
+    this.Set("CustomFunc",cb) // Your js compoments function name here
+    return nil
+}
+
+func CustomFunc(this js.Value, args []js.Value) interface{} {
+    println("CustomFunc called")
+    return nil
+}
+
+func main() {
+    c := make(chan struct{}, 0)
+    cb := js.FuncOf(ExportFunction)
+    js.Global().Set("ExportFunction", cb)
+    println("Web Assembly loadded!")
+    <-c
+    cb.Release()
+}
+</wasm>
+
 ```
 
 # License
