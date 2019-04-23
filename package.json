@@ -1,0 +1,24 @@
+{
+  "name": "vue-go-wasm",
+  "version": "1.0.0",
+  "description": "The vue plugin for go-wasm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkautism/vue-go-wasm.git"
+  },
+  "keywords": [
+    "vue",
+    "go",
+    "wasm"
+  ],
+  "author": "darkautism@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darkautism/vue-go-wasm/issues"
+  },
+  "homepage": "https://github.com/darkautism/vue-go-wasm#readme"
+}
