@@ -46,7 +46,7 @@ Add this loader into vue's sub loader.
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-            wasm: require.resolve('./wasm-loader.js')
+            wasm: 'vue-go-wasm-loader'
         }
     },
 ```
@@ -59,7 +59,7 @@ If your project is create from vue-cli, please edit `vue-loader.conf.js`.
         sourceMap: sourceMapEnabled,
         extract: isProduction
     }) ,
-    wasm: require.resolve('./wasm-loader.js')
+    wasm: 'vue-go-wasm-loader'
   },
 ```
 

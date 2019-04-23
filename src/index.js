@@ -5,6 +5,9 @@ const hashDigest = require('loader-utils/lib/getHashDigest');
 
 module.exports = function (content, map) {
   const options = loaderUtils.getOptions(this) || {};
+  if (options.lang !== 'go') {
+    return content
+  }
   // go wasm load scripts
   let goroot = child_process.execSync('go env GOROOT').toString().trim()
   if (!fs.existsSync(`${goroot}/misc/wasm/wasm_exec.js`) ){
